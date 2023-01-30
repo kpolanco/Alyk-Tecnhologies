@@ -1,0 +1,96 @@
+{
+	"info": {
+		"_postman_id": "eca31611-8cc5-4ec8-b7b9-96e59f7b9dc2",
+		"name": "Open Weather API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Current Weather Data By Name",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.openweathermap.org/data/2.5/weather?q=Seattle&appid=4e7e56f081837de93c78981b0133fc69",
+					"protocol": "https",
+					"host": [
+						"api",
+						"openweathermap",
+						"org"
+					],
+					"path": [
+						"data",
+						"2.5",
+						"weather"
+					],
+					"query": [
+						{
+							"key": "q",
+							"value": "Seattle",
+							"description": "Nombre de la Ciudad"
+						},
+						{
+							"key": "appid",
+							"value": "4e7e56f081837de93c78981b0133fc69",
+							"description": "Identificador de App para Open Weather API"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Currency Weather By City",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"cityName\": \"Washington\" \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:7090/weather-consumer-service/weather/v1/get-weather-currency-by-city",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7090",
+					"path": [
+						"weather-consumer-service",
+						"weather",
+						"v1",
+						"get-weather-currency-by-city"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "List Last 10 Weather",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:7090/weather-consumer-service/weather/v1/find-last-ten-records",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7090",
+					"path": [
+						"weather-consumer-service",
+						"weather",
+						"v1",
+						"find-last-ten-records"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
