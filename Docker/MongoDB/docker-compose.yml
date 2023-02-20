@@ -1,0 +1,32 @@
+version: '6.0.4'
+
+services: 
+  mongo: 
+    image: mongo:6.0.4
+    container_name: mongo-db-dev
+    restart: always
+    environment: 
+      - MONGO_INITDB_ROOT_USERNAME=mongodba
+      - MONGO_INITDB_ROOT_PASSWORD=Admin2022
+      - MONGO_INITDB_DATABASE=weather
+    volumes:
+      - ./mongo-volume:/data/db
+    ports:
+      - 27117:27017
+  mongo-express:
+    image: mongo-express:latest
+    container_name: mongo-express-dev
+    restart: always
+    environment: 
+      - ME_CONFIG_BASICAUTH_USERNAME=admin
+      - ME_CONFIG_BASICAUTH_PASSWORD=Admin2022
+      - ME_CONFIG_MONGODB_SERVER=localhost
+      - ME_CONFIG_MONGODB_PORT=27117
+      - ME_CONFIG_MONGODB_ADMINUSERNAME=mongodba
+      - ME_CONFIG_MONGODB_ADMINPASSWORD=Admin2022
+    ports:
+      - 8085:8085
+
+networks:
+  default:
+    name: mongodb_network
