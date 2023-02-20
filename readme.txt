@@ -8,7 +8,7 @@ Desarrollar microservicio que exponga un API con dos rutas:
 *********************************
  Requisitos para la ambientación
 *********************************
-Contenedor: Docker Desktop 4.16.2
+Interfaz de Contenedor: Docker Desktop 4.16.2
 Java: JDK 17
 Gestor de BD: MySQL 5.7 o superior
 IDE: Spring Tool Suite 4-4.9.0 o versión más actual
@@ -18,7 +18,7 @@ Manejador de Dependencias: Gradle 7.6
  Se deben realizar los siguientes pasos:
 *****************************************
 1.) Descargar el código del siguiente proyecto a través del Git Bash, utiliando el siguiente comando [git clone https://github.com/kpolanco/Alyk-Tecnhologies.git]
-2.) Si la estructura de despliegue del proyecto es a través de docker, se debe bajar la imagen oficial de MySQL para esto se debe colocar el siguiente comando en una terminal de windows [CMD]: docker pull mysql
+2.) Si la estructura de despliegue del proyecto es a través de docker, se debe bajar la imagen oficial de MySQL para esto se debe colocar el siguiente comando en una terminal de windows [CMD]: docker pull mysql:8.0.32
 3.) Una vez creada la imagen del MySQL, se debe crear un contenedor con las siguientes especificaciones:
 	A.) El contenedor se definirá como [my-sql-dev]
 	B.) Se establece el password del usuario [root] con el siguiente valor: [Admin2022]

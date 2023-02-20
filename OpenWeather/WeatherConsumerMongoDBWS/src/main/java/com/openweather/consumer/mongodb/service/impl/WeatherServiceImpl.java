@@ -1,17 +1,17 @@
 /**
  * @(#) WeatherServiceImpl.java
  *
- * Project: WeatherConsumerWS
+ * Project: WeatherConsumerMongoDBWS
  * Title: Clase WeatherServiceImpl.java
  * Description: Clase que consume los servicios de consulta climatologica del API OpenWeather, 
- * 				y ejecuta las consultas y/o transacciones de la tabla [WEATHER_CURRENCY] de la BD del Weather, 
- * 				por �ltimo proporciona los datos generales del clima.
- * Copyright: Copyright(c) 29/01/2023
+ * 				y ejecuta las consultas y/o transacciones de la coleccion [weather_currency] de la BD del Weather, 
+ * 				por último proporciona los datos generales del clima.
+ * Copyright: Copyright(c) 10/02/2023
  * Company: Grupo FI
  * @author: Kelly Polanco
  * @version 1.0
  */
-package com.openweather.consumer.service.impl;
+package com.openweather.consumer.mongodb.service.impl;
 
 import java.text.MessageFormat;
 import java.util.ArrayList;
@@ -33,20 +33,23 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
-import com.openweather.consumer.dao.WeatherDao;
-import com.openweather.consumer.entity.WeatherCurrency;
-import com.openweather.consumer.json.WeatherCurrencyViewRest;
-import com.openweather.consumer.response.WeatherResponse;
-import com.openweather.consumer.service.WeatherService;
-import com.openweather.consumer.util.MessageUtil;
+import com.openweather.consumer.mongodb.dao.WeatherDao;
+import com.openweather.consumer.mongodb.entity.WeatherCurrency;
+import com.openweather.consumer.mongodb.json.WeatherCurrencyViewRest;
+import com.openweather.consumer.mongodb.response.WeatherResponse;
+import com.openweather.consumer.mongodb.service.WeatherService;
+import com.openweather.consumer.mongodb.util.MessageUtil;
+
+import lombok.RequiredArgsConstructor;
 
 /**
  * Implementadora de interfaz de servicios
  *
  * @author Kelly Polanco
- * @package com.openweather.consumer.service.impl
+ * @package com.openweather.consumer.mongodb.service.impl
  */
 @Service("weatherService")
+@RequiredArgsConstructor
 public class WeatherServiceImpl implements WeatherService {
 
 	// Property Fields Logger
@@ -61,12 +64,12 @@ public class WeatherServiceImpl implements WeatherService {
 	@Value(value = "${WEATHER_APP_ID}")
 	private String weatherAppId;
 	@Autowired
-	private MessageUtil messageUtil;
+	private final MessageUtil messageUtil;
 	@Autowired
-	private WeatherDao weatherDao;
+	private final WeatherDao weatherDao;
 
 	/**
-	 * Invoca al servicio que almacena los datos meteorol�gicos actuales de una
+	 * Invoca al servicio que almacena los datos meteorológicos actuales de una
 	 * ciudad en BD.
 	 * 
 	 * @param cityName
@@ -85,7 +88,7 @@ public class WeatherServiceImpl implements WeatherService {
 	}
 
 	/**
-	 * Invoca al servicio que busca los datos meteorol�gicos actuales de una ciudad
+	 * Invoca al servicio que busca los datos meteorológicos actuales de una ciudad
 	 * desde el API de OpenWeather.
 	 * 
 	 * @param cityName
@@ -105,15 +108,6 @@ public class WeatherServiceImpl implements WeatherService {
 			try {
 				final WeatherCurrency weatherCurrency = modelMapper.map(weatherCurrencyRest, WeatherCurrency.class);
 				weatherCurrency.setFechaRegistro(new Date());
-				weatherCurrency.getCoord().setWeatherCurrency(weatherCurrency);
-				weatherCurrency.getClouds().setWeatherCurrency(weatherCurrency);
-				weatherCurrency.getSys().setWeatherCurrency(weatherCurrency);
-				weatherCurrency.getWind().setWeatherCurrency(weatherCurrency);
-				weatherCurrency.getMain().setWeatherCurrency(weatherCurrency);
-
-				if (weatherCurrency.getWeathers() != null && !weatherCurrency.getWeathers().isEmpty()) {
-					weatherCurrency.getWeathers().forEach(weather -> weather.setWeatherCurrency(weatherCurrency));
-				}
 				this.weatherDao.save(weatherCurrency);
 			} catch (final Exception ex) {
 				log.error(this.messageUtil.getFailureSaveObject("WeatherCurrency"), ex);
@@ -129,7 +123,7 @@ public class WeatherServiceImpl implements WeatherService {
 	}
 
 	/**
-	 * Invoca al servicio que obtiene el listado de los 10 �ltimos registros
+	 * Invoca al servicio que obtiene el listado de los 10 últimos registros
 	 * realizados en BD.
 	 * 
 	 * @return WeatherResponse<List<WeatherCurrencyViewRest>>

@@ -1,16 +1,16 @@
 /**
  * @(#) WeatherController.java
  *
- * Project: WeatherConsumerWS
+ * Project: WeatherConsumerMongoDBWS
  * Title: Clase WeatherController.java
  * Description: Clase que proporciona los servicios web que publica 
- * 				los datos meteorol�gicos actuales.
- * Copyright: Copyright(c) 29/01/2023
+ * 				los datos meteorológicos actuales.
+ * Copyright: Copyright(c) 10/02/2023
  * Company: Grupo FI
  * @author: Kelly Polanco
  * @version 1.0
  */
-package com.openweather.consumer.controller;
+package com.openweather.consumer.mongodb.controller;
 
 import java.util.List;
 
@@ -25,11 +25,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.openweather.consumer.json.WeatherCurrencyViewRest;
-import com.openweather.consumer.json.WeatherEditRest;
-import com.openweather.consumer.response.WeatherResponse;
-import com.openweather.consumer.service.WeatherService;
-import com.openweather.consumer.util.ValidateField;
+import com.openweather.consumer.mongodb.json.WeatherCurrencyViewRest;
+import com.openweather.consumer.mongodb.json.WeatherEditRest;
+import com.openweather.consumer.mongodb.response.WeatherResponse;
+import com.openweather.consumer.mongodb.service.WeatherService;
+import com.openweather.consumer.mongodb.util.ValidateField;
 
 import io.swagger.v3.oas.annotations.Operation;
 import jakarta.validation.Validator;
@@ -38,7 +38,7 @@ import jakarta.validation.Validator;
  * Controlador del servicio Weather
  *
  * @author Kelly Polanco
- * @package com.openweather.consumer.controller
+ * @package com.openweather.consumer.mongodb.controller
  */
 @RestController
 @CrossOrigin(origins = "${WEATHER_WS_SERVER}")
@@ -51,7 +51,7 @@ public class WeatherController {
 	private WeatherService weatherService;
 
 	/**
-	 * Servicio que obtiene los datos meteorol�gicos actuales de una ciudad.
+	 * Servicio que obtiene los datos meteorológicos actuales de una ciudad.
 	 * 
 	 * @param token
 	 * @return FundsResponse<TokenViewRest>
@@ -59,7 +59,7 @@ public class WeatherController {
 	@SuppressWarnings("unchecked")
 	@ResponseStatus(HttpStatus.OK)
 	@PostMapping(value = "get-weather-currency-by-city", produces = MediaType.APPLICATION_JSON_VALUE)
-	@Operation(summary = "Obtiene los datos meteorol�gicos actuales de una ciudad.")
+	@Operation(summary = "Obtiene los datos meteorológicos actuales de una ciudad.")
 	public WeatherResponse<WeatherCurrencyViewRest> getWeatherCurrencyByCityName(
 			@RequestBody(required = true) final WeatherEditRest weatherRest) {
 		final ValidateField<WeatherEditRest> validateField = new ValidateField<>(this.validator);
@@ -70,13 +70,13 @@ public class WeatherController {
 	}
 
 	/**
-	 * Servicio que obtiene el listado de los 10 �ltimos registros realizados en BD.
+	 * Servicio que obtiene el listado de los 10 últimos registros realizados en BD.
 	 * 
 	 * @return WeatherResponse<List<WeatherCurrencyViewRest>>
 	 */
 	@ResponseStatus(HttpStatus.OK)
 	@GetMapping(value = "find-last-ten-records", produces = MediaType.APPLICATION_JSON_VALUE)
-	@Operation(summary = "Obtiene el listado de los 10 �ltimos registros realizados en BD.")
+	@Operation(summary = "Obtiene el listado de los 10 últimos registros realizados en BD.")
 	public WeatherResponse<List<WeatherCurrencyViewRest>> findLastTenRecords() {
 		return this.weatherService.findLastTenRecords();
 	}

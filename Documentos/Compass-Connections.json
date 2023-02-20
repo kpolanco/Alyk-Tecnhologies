@@ -1,0 +1,72 @@
+{
+  "type": "Compass Connections",
+  "version": {
+    "$numberInt": "1"
+  },
+  "connections": [
+    {
+      "id": "54cdf7f0-93fc-4154-9763-6e1d16567605",
+      "connectionOptions": {
+        "connectionString": "mongodb://weather@localhost:27017/?authMechanism=DEFAULT"
+      },
+      "favorite": {
+        "name": "Weather (DEV)",
+        "color": "color10"
+      },
+      "lastUsed": {
+        "$date": {
+          "$numberLong": "1676165749695"
+        }
+      },
+      "connectionSecrets": "AAFyA6NdlNOH9QXSiLfAjuj1nA5s6gw8OzFqXZq1ytHO3omIMrMIF5OqsvAvIR9hJE6UmJOkiinpTuFoBONdhuLLB138BUNt0WGlgWO8GYPu4xNIp8vPsQ=="
+    },
+    {
+      "id": "5930224e-466f-46e9-8b99-ce1a2a610022",
+      "connectionOptions": {
+        "connectionString": "mongodb://mongodba@localhost:27017/?authMechanism=DEFAULT"
+      },
+      "favorite": {
+        "name": "MongoDB (DEV)",
+        "color": "color1"
+      },
+      "lastUsed": {
+        "$date": {
+          "$numberLong": "1676167150463"
+        }
+      },
+      "connectionSecrets": "AAFYAbuhYkKLFnCqBjAfTo/xuNeE9Z6BRQqQ0rSiSuRxqnaoSLfo58yTi2/EWI2og/jsk53GYM6y6JxUexsYSeFSzX2K6nfW08qkPxyj/IHo5QCpMrE="
+    },
+    {
+      "id": "0794995e-1d9c-4731-ab69-acc0969860a3",
+      "connectionOptions": {
+        "connectionString": "mongodb://mongodba@localhost:27117/?authMechanism=DEFAULT"
+      },
+      "favorite": {
+        "name": "MongoDB (Docker - DEV)",
+        "color": "color4"
+      },
+      "lastUsed": {
+        "$date": {
+          "$numberLong": "1676183772275"
+        }
+      },
+      "connectionSecrets": "AAE+yvC6KEl8vpQGKlQea9nl5QpYUD++YH8dgMRksEuRaz6Sk78EhtUZVCTxY4CU82ustaonofEqGslO2I2gQkgFD9rx8Wr8TN+qjNKN4Gr5LOHtdmA="
+    },
+    {
+      "id": "922f6222-0cc9-4cff-a99e-0055d7505ccd",
+      "connectionOptions": {
+        "connectionString": "mongodb+srv://kpolanco@cluster0.hqxclgp.mongodb.net/test"
+      },
+      "favorite": {
+        "name": "MongoDB (Cloud)",
+        "color": "color5"
+      },
+      "lastUsed": {
+        "$date": {
+          "$numberLong": "1676864251671"
+        }
+      },
+      "connectionSecrets": "AAHIj+temOxyc+1+i3x4IW0cg3ymM7QcOF+/pP5CGZG7bCkejAAvUqQnuwbvVQ5JM0cIHhSGC7fTcggvnC6Z+mqidrHsllEpnkaESYWsS0jVo3W3WG3WEJ7a7yvm"
+    }
+  ]
+}

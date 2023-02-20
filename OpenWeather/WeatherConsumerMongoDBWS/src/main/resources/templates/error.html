@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="es">
+	<head>
+		<title th:text="${message}"></title>
+		<link rel="stylesheet" href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css">
+		<link rel="stylesheet" href="https://unpkg.com/@tailwindcss/typography@0.4.x/dist/typography.min.css" />
+	</head>
+	<body class="prose prose-sm m-auto min-w-min prose-red">
+		<h1 class="text-center pt-24">Ocurrió un error durante esta solicitud..!</h1>
+		<table class=" border bg-gray-100">
+			<tr>
+				<td class="border w-64">Error: </td>
+				<td class="border w-96" th:text="${message}"></td>
+			</tr>
+			<tr>
+				<td class="borderw-64">Código Estatus: </td>
+				<td class="border w-96" th:text="${status}"></td>
+			</tr>
+			<tr>
+				<td class="borderw-64">Excepción: </td>
+				<td class="border w-96" th:text="${exception}"></td>
+			</tr>
+			<tr>
+				<td class="border w-64">Seguimiento de Pila: </td>
+				<td class="border w-96" th:text="${trace}"></td>
+			</tr>
+			<tr>
+				<td class="border w-64">Error Vinculante: </td>
+				<td class="border w-96" th:text="${errors}"></td>
+			</tr>
+		</table>
+	</body>
+</html>
